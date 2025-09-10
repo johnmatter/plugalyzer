@@ -5,6 +5,7 @@ It processes audio and MIDI from input files using the desired plugin, writing t
 Plugins with multiple input buses (such as sidechains) are supported.
 
 # Table of Contents
+- [Quick Start](#quick-start)
 - [Usage](#usage)
   - [Process audio files](#process-audio-files)
     - [Bus layouts](#bus-layouts) 
@@ -13,6 +14,55 @@ Plugins with multiple input buses (such as sidechains) are supported.
   - [List plugin parameters](#list-plugin-parameters)
     - [Limitations](#limitations)
 - [Installation](#installation)
+
+# Quick Start
+
+After building the project, you can use the following commands to get started:
+
+## List Plugin Parameters
+To see what parameters a plugin has available:
+```bash
+./build/Plugalyzer_artefacts/Plugalyzer listParameters -p /path/to/plugin.vst3
+```
+
+## Process Audio Files
+To process an audio file through a plugin:
+```bash
+./build/Plugalyzer_artefacts/Plugalyzer process \
+  -p /path/to/plugin.vst3 \
+  -i input.wav \
+  -o output.wav \
+  --overwrite
+```
+
+## Process with MIDI
+To process MIDI through a plugin (useful for instruments):
+```bash
+./build/Plugalyzer_artefacts/Plugalyzer process \
+  -p /path/to/plugin.vst3 \
+  -m input.mid \
+  -o output.wav \
+  -s 44100
+```
+
+## Process with Parameters
+To set specific plugin parameters during processing:
+```bash
+./build/Plugalyzer_artefacts/Plugalyzer process \
+  -p /path/to/plugin.vst3 \
+  -i input.wav \
+  -o output.wav \
+  --param="Wet/Dry Mix":0.2:n \
+  --param=Distortion:Off
+```
+
+## Get Help
+For detailed help on any command:
+```bash
+./build/Plugalyzer_artefacts/Plugalyzer --help
+./build/Plugalyzer_artefacts/Plugalyzer process --help
+./build/Plugalyzer_artefacts/Plugalyzer listParameters --help
+```
 
 # Usage
 The general usage of plugalyzer follows the pattern `plugalyzer [command] [options...]`.  
